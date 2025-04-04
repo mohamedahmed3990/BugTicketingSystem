@@ -12,6 +12,8 @@ namespace BugTicketingSystem.DAL.Entities
         public string Name { get; set; }
         public string Description { get; set; }
 
+        public string Image { get; set; }
+
         public int BugId { get; set; }
         public Bug Bug { get; set; }
     }

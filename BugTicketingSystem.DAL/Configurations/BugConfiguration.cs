@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BugTicketingSystem.DAL.Configurations
 {
-    public class BugConfigurations : IEntityTypeConfiguration<Bug>
+    public class BugConfiguration : IEntityTypeConfiguration<Bug>
     {
         public void Configure(EntityTypeBuilder<Bug> builder)
         {
@@ -20,6 +20,9 @@ namespace BugTicketingSystem.DAL.Configurations
             builder.HasOne(b => b.Project)
                 .WithMany(p => p.Bugs)
                 .HasForeignKey(b => b.ProjectId);
+
+            builder.HasMany(b => b.Assignees)
+                .WithMany(u => u.Bugs);
         }
     }
 }
