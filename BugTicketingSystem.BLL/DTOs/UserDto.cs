@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace BugTicketingSystem.BLL.DTOs
 {
-    public record UserDto(string name, string email, string token);
+    public record UserDto(string userName, string email,string phoneNumber, string token);
 
 }

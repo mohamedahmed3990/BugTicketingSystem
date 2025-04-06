@@ -40,7 +40,7 @@ namespace BugTicketingSystem.PL.Controllers
             var claims = await _userManager.GetClaimsAsync(user);
 
             var token = _authService.CreateToken(claims.ToList());
-            return Ok(new UserDto(user.DisplayName, user.Email, token));
+            return Ok(new UserDto(user.UserName, user.Email, token));
 
 
         }
@@ -48,13 +48,12 @@ namespace BugTicketingSystem.PL.Controllers
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
-           
+
             var user = new AppUser()
             {
-                DisplayName = registerDto.displayName,
                 Email = registerDto.email,
                 PhoneNumber = registerDto.phoneNumber,
-                UserName = registerDto.email.Split("@")[0]
+                UserName = registerDto.userName
             };
 
 
@@ -75,7 +74,7 @@ namespace BugTicketingSystem.PL.Controllers
             await _userManager.AddClaimsAsync(user, claims);
 
             var token = _authService.CreateToken(claims);
-            return new UserDto(user.DisplayName, user.Email, token);
+            return new UserDto(user.user, user.Email, token);
         }
 
 

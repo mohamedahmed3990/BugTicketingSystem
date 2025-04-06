@@ -1,6 +1,7 @@
 
 using BugTicketingSystem.DAL.Context;
 using BugTicketingSystem.DAL.Entities;
+using BugTicketingSystem.DAL.Repositories.PorjectRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
 
@@ -29,6 +30,8 @@ namespace BugTicketingSystem.PL
             }).AddEntityFrameworkStores<AppDbContext>();
             
 
+            builder.Services.AddScoped<IProjectRepository, ProjectRepoistory>();
+
 
 
 
@@ -44,13 +47,13 @@ namespace BugTicketingSystem.PL
                 app.UseSwaggerUI();
             }
 
-            var imageFolder = Path.Combine(Directory.GetCurrentDirectory(), "Images");
-            Directory.CreateDirectory(imageFolder);
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(imageFolder),
-                RequestPath = "staticFile"
-            });
+            //var imageFolder = Path.Combine(Directory.GetCurrentDirectory(), "Images");
+            //Directory.CreateDirectory(imageFolder);
+            //app.UseStaticFiles(new StaticFileOptions
+            //{
+            //    FileProvider = new PhysicalFileProvider(imageFolder),
+            //    RequestPath = "staticFile"
+            //});
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
