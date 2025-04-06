@@ -17,10 +17,25 @@ namespace BugTicketingSystem.DAL.Repositories.PorjectRepository
         {
             _dbContext = dbContext;
         }
+
+        public async Task Add(Project project)
+        {
+            _dbContext.Set<Project>().Add(project);
+            await _dbContext.SaveChangesAsync();
+        }
+
         public async Task<List<Project>> GetAllAsync()
         {
-            var projects = await _dbContext.Set<Project>().ToListAsync();
+            var projects = await _dbContext.Set<Project>().AsNoTracking().ToListAsync();
             return projects;
+        }
+
+        public async Task<Project?> GetByIdAsync(int id)
+        {
+            return await _dbContext.Set<Project>()
+           .AsNoTracking()
+           .Include(p => p.Bugs)
+           .FirstOrDefaultAsync(p => p.Id == id);
         }
     }
 }

@@ -12,6 +12,9 @@ namespace BugTicketingSystem.DAL.Repositories.PorjectRepository
 
         Task<List<Project>> GetAllAsync();
 
+        Task Add(Project project);
+
+        Task<Project?> GetByIdAsync(int id);
 
     }
 }

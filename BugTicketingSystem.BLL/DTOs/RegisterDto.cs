@@ -7,5 +7,5 @@ using System.Threading.Tasks;
 
 namespace BugTicketingSystem.BLL.DTOs
 {
-    public record RegisterDto(string userName, string phoneNumber, string email, string password);
+    public record RegisterDto(string phoneNumber, string email, string password, string role);
 }
