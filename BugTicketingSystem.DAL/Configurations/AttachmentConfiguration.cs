@@ -10,11 +10,11 @@ namespace BugTicketingSystem.DAL.Configurations
         public void Configure(EntityTypeBuilder<Entities.Attachment> builder)
         {
             builder.Property(a => a.Name).IsRequired();
-            builder.Property(a => a.Description).IsRequired();
 
             builder.HasOne(a => a.Bug)
                 .WithMany(b => b.Attachments)
-                .HasForeignKey(a => a.BugId);
+                .HasForeignKey(a => a.BugId)
+                .IsRequired(false);
         }
     }
 }
